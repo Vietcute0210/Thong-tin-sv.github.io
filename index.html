@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Sinh Viên</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hệ Thống Quản Lý Sinh Viên</h1>
+        
+        <!-- Form nhập thông tin sinh viên -->
+        <div class="form-section">
+            <h2 id="form-title">Thêm Sinh Viên Mới</h2>
+            <form id="student-form" novalidate>
+                <div class="form-group">
+                    <label for="student-id">Mã Sinh Viên:</label>
+                    <input type="text" id="student-id" required placeholder="Ví dụ: SV001" aria-describedby="student-id-error">
+                    <span class="error-message" id="student-id-error" aria-live="polite"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="full-name">Họ và Tên:</label>
+                    <input type="text" id="full-name" required placeholder="Nguyễn Văn A" aria-describedby="full-name-error">
+                    <span class="error-message" id="full-name-error" aria-live="polite"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="birth-date">Ngày Sinh:</label>
+                    <input type="date" id="birth-date" required aria-describedby="birth-date-error">
+                    <span class="error-message" id="birth-date-error" aria-live="polite"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="class-name">Lớp:</label>
+                    <input type="text" id="class-name" required placeholder="CNTT-K15" aria-describedby="class-name-error">
+                    <span class="error-message" id="class-name-error" aria-live="polite"></span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="gpa">Điểm GPA:</label>
+                    <input type="number" id="gpa" step="0.01" min="0" max="4" required placeholder="3.50" aria-describedby="gpa-error">
+                    <span class="error-message" id="gpa-error" aria-live="polite"></span>
+                </div>
+                
+                <div class="form-buttons">
+                    <button type="submit" id="submit-btn" class="btn btn-primary">Thêm Sinh Viên</button>
+                    <button type="button" id="cancel-btn" class="btn btn-secondary" style="display: none;">Hủy</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Bảng hiển thị danh sách sinh viên -->
+        <div class="table-section">
+            <h2>Danh Sách Sinh Viên</h2>
+            <div class="table-controls">
+                <input type="text" id="search-input" placeholder="Tìm kiếm theo tên hoặc mã SV...">
+                <div class="sort-buttons">
+                    <button class="btn btn-sort" id="sort-by-id" title="Sắp xếp theo mã SV">
+                        <span>Mã SV</span>
+                        <span class="sort-icon">↕</span>
+                    </button>
+                    <button class="btn btn-sort" id="sort-by-gpa" title="Sắp xếp theo GPA">
+                        <span>GPA</span>
+                        <span class="sort-icon">↕</span>
+                    </button>
+                </div>
+                <span id="student-count" class="count-badge">Tổng số: 0 sinh viên</span>
+            </div>
+            
+            <div class="table-wrapper">
+                <table id="student-table">
+                    <thead>
+                        <tr>
+                            <th>Mã SV</th>
+                            <th>Họ và Tên</th>
+                            <th>Ngày Sinh</th>
+                            <th>Lớp</th>
+                            <th>GPA</th>
+                            <th>Hành Động</th>
+                        </tr>
+                    </thead>
+                    <tbody id="student-tbody">
+                        <!-- Dữ liệu sinh viên sẽ được thêm vào đây bằng JavaScript -->
+                    </tbody>
+                </table>
+                <div id="no-data" class="no-data">
+                    Chưa có sinh viên nào. Hãy thêm sinh viên mới!
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal xác nhận xóa -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <h3>Xác Nhận Xóa</h3>
+            <p>Bạn có chắc chắn muốn xóa sinh viên này?</p>
+            <div class="modal-buttons">
+                <button id="confirm-delete" class="btn btn-danger">Xóa</button>
+                <button id="cancel-delete" class="btn btn-secondary">Hủy</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
